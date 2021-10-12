@@ -1,0 +1,40 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">修改我的限制商品</h3>
+	</div>
+	<form id="commodityUpdateForm" role="form" method="post" enctype="multipart/form-data">
+		<div class="box-body">
+			<div class="form-group">
+				<label>新的商品名称</label>
+				<input type="text" id="exampleInputName-update" name="name" />
+			</div>
+			<div class="form-group">
+				<label>商品价格</label>
+				<input type="text" id="exampleInputPrice-update" name="price" />
+			</div>
+			<div class="form-group">
+				<label>新旧程度</label>
+				<input type="text" id="exampleInputShabby-update" name="shabby" />
+			</div>
+			<div class="form-group">
+				<label>商品介绍</label>
+				<input type="text" id="exampleInputIntroduce-update" name="introduce" />
+			</div>
+			<div class="form-group">
+				<label>商品照片</label>
+				<input type="file" id="exampleInputPhoto-update" name="photo" />
+			</div>
+			<div class="form-group">
+				<label>请选择商品标签</label>
+				<span id="update-sale-label-span"></span>
+				<button id="update-nextPageLabel">更多标签</button>
+			</div>
+		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+			<button id="update-submit" type="button" class="btn btn-primary" style="width: 33%;">确定</button>
+			<button id="cancle-button-update" type="button" class="btn btn-primary"
+				style="float: right;width: 33%;">取消</button>
+		</div>
+	</form>
+</div>

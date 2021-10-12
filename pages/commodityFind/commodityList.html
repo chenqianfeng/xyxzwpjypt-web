@@ -1,0 +1,57 @@
+<div class="box">
+	<div class="box-header">
+		<div class="row">
+			<div class="col-md-4">
+				<h3 class="box-title">求购商品列表主页</h3>
+			</div>
+			<div class="col-md-8 text-right">
+				<a id="commodityViewLink" class="btn btn-default">查看物品详情 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</div>
+		
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body">
+		<table id="commodity-table" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>名称</th>
+					<th>价格</th>
+					<th>发布日期</th>
+					<th>要求</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>名称</th>
+					<th>价格</th>
+					<th>发布日期</th>
+					<th>要求</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-6 text-left">
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			个数：<span id="count"></span>
+			页数:<span id="page"></span>/<span id="pageCount"></span>
+		</div>
+
+		<div class="col-md-6 text-right">
+			<nav>
+				<ul class="pagination justify-content-end">
+					<li class="page-item"><a class="page-link" href="#">首页</a></li>
+					<li class="page-item"><a class="page-link" href="#">上页</a></li>
+					<li class="page-item"><a class="page-link" href="#">下页</a></li>
+					<li class="page-item"><a class="page-link" href="#">末页</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<div id="commodity-list-dialog" style="background-color: #EEE"></div>
+<script src="pages/commodityFind/list.js"></script>

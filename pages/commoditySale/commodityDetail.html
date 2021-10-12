@@ -1,0 +1,132 @@
+<div class="box box-primary" id="commodity-Detail-Dialog">
+	<div class="box-header with-border">
+		<h3 class="box-title">查看商品</h3>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
+	<div >
+		<div class="box-body" id="detail-div">
+			<div class="form-group">
+				<label for="exampleInputID">商品ID:</label>
+				<lable type="text" name="id" id="detail-sale-id"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName">商品名称:</label>
+				<lable type="text" name="name"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputType">商品新旧程度:</label>
+				<lable type="text" name="shabby"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputLabel">商品标签:</label>
+				<span id ="commoditysale-label-span"></span>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPrice">商品价格:</label>
+				<lable type="text" name="price"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputShopper">卖家昵称:</label>
+				<lable type="text" name="shopper"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputIntroduce">商品介绍:</label>
+				<lable type="text" name="introduce"/>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputReleaseDate">发布日期:</label>
+				<lable type="text" name="releaseDate"/>
+			</div>
+			<span id="showphotospan">
+				<div class="form-group">
+					<label for="exampleInputPhoto">商品照片:</label>
+					<span>
+						<img id="commoditySale-img" name="photo" height="200" width="200"/>
+					</span>
+				</div>
+			</span>
+			<div class="form-group">
+				<label for="exampleInputWords">商品留言:</label>
+				<div id="words"></div>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button id="word-button" type="button" style="float: left;width: 10%;">留言</button>&nbsp;&nbsp;&nbsp;
+			<input id = "words-label" placeholder = "请输入留言信息"/>
+		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+			<button id="cancle-button" type="button" class="btn btn-primary" style="float: left;width: 33%;">返回</button>
+			<button id="buy-button" type="button" class="btn btn-primary" style="float: right;width: 33%;">加入订单</button>
+		</div>
+		
+	</div>
+</div>
+<script>
+	//点击取消操作
+	$("#cancle-button").on("click",function(){
+		$("div#commodity-Detail-Dialog").html("");
+	});
+	
+	//点击购买操作
+	$("#buy-button").on("click",function(){
+		var commodityid = $("#detail-sale-id").html();
+		$.ajax({
+			url: "http://localhost:80/order/add",
+			type: "GET",
+			dataType: "json",
+			data: {commodityId: commodityid},
+			headers: {
+				"token": localStorage.token
+			},
+			success: function(resultDate) {
+				if (resultDate.code == 200) {
+					alert("订单创建成功");
+					$("div#commodity-Detail-Dialog").html("");
+				}else if (resultDate.code == 443){
+							alert("未登录");
+							location.href = "login.html";
+				} else {
+					alert("错误代码：" + resultDate.code);
+				}
+			},
+			error: function(xhr) {
+				alert("列表显示函数请求出错：" + xhr.status);
+			}
+		});
+	});
+	//添加留言
+	$("#word-button").on("click",function(){
+		var word = $("#words-label").val().replace(/(^\s*)|(\s*$)/g, '');;
+		var commodityid = $("#detail-sale-id").html();
+		if(word == '' || word == undefined || word == null)
+			alert("留言不能为空，请重新输入");
+		$.ajax({
+			url: "http://localhost:80/commodity/sale/words/add",
+			type: "GET",
+			dataType: "json",
+			data: {
+				commodityId: commodityid,
+				words: word
+			},
+			headers: {
+				"token": localStorage.token
+			},
+			success: function(resultDate) {
+				if (resultDate.code == 200) {
+					alert("留言成功");
+					$("div#commodity-Detail-Dialog").html("");
+				}else if (resultDate.code == 443){
+							alert("未登录");
+							location.href = "login.html";
+				} else {
+					alert("错误代码：" + resultDate.code);
+				}
+			},
+			error: function(xhr) {
+				alert("列表显示函数请求出错：" + xhr.status);
+			}
+		});
+	});
+</script>

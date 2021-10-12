@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Greenhouse Monitoring System</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="">
+		<!-- CSS -->
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+		<link rel="stylesheet" href="assets/css/reset.css">
+		<link rel="stylesheet" href="assets/css/supersized.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<!-- Javascript -->
+		<script src="assets/js/jquery-1.8.2.min.js"></script>
+		<script src="assets/js/supersized.3.2.7.min.js"></script>
+		<script src="assets/js/supersized-init.js"></script>
+	</head>
+
+	<body>
+		<div id="logonform" class="page-container">
+			<h1>欢迎登录<br/><br/>校园闲置物品交易平台</h1>
+			<form id="logonform" onsubmit="return logonbyId()">
+				<input id="id" type="text" name="id" class="username" placeholder="Username">
+				<input id="password" type="password" name="password" class="password" placeholder="Password">
+				<button type="submit">登录</button>
+				<div class="error"><span>+</span></div>
+			</form>
+			<div class="connect" id="changewaybutton">
+				<p>用手机号登录:</p>
+				<p>
+					<a class="phone" onclick="toPhoneLogon()"></a>
+				</p>
+			</div>
+		</div>
+		<div>
+			<a href="pages/register.html" style="color:#666; font-size:12px;">
+				还没有账号？ 点击注册
+			<a>
+		</div>
+		<div>
+			<a href="pages/retrieve.html" style="color:#666; font-size:12px;">
+				忘记密码？点击找回
+			<a>
+		</div>
+	</body>
+	<script>
+		function toPhoneLogon() {
+			$("div form").attr("onsubmit", "return logonbyphone()");
+			$("div form input").eq(0).attr("placeholder", "Phone");
+			$("#changewaybutton p").eq(0).text("用账号登录：");
+			$("#changewaybutton p a").attr("class", "id").attr("onclick", "toIdLogon()")
+		};
+		
+		function toIdLogon() {
+			$("div form").attr("onsubmit", "return logonbyId()");
+			$("div form input").eq(0).attr("placeholder", "UserId");
+			$("#changewaybutton p").eq(0).text("用手机号登录：");
+			$("#changewaybutton p a").attr("class", "phone").attr("onclick", "toPhoneLogon()")
+		};
+		
+		function logonbyId() {
+			var parem = {
+				"id": $("#id").val(),
+				"password": $("#password").val()
+			};
+			alert("正在登录...");
+			$.ajax({
+				url: "http://localhost:80/logon",
+				type: "GET",
+				dataType: "json",
+				data: parem,
+				async: false,
+				headers: {
+					"token": localStorage.token
+				},
+				success:  function(result) {
+					if (result.code == 200) {
+						localStorage.token = result.data;
+						alert(result.data);
+						window.location.href = "shop_index.html";
+						window.event.returnValue = false;
+					}else if (result.code == 201) {
+						//存储token
+						localStorage.token = result.data;
+						//跳转到首页
+						location.href = "./admin_index.html";
+					}else if (result.code == 444) {
+						alert("用户名或密码输入错误");
+					}else if (result.code == 401) {
+						alert("已登录");
+						window.location.href = "shop_index.html";
+						window.event.returnValue = false;
+					}
+				},
+				error: function(xhr) {
+					alert("请求出错：" + xhr.status)
+				}
+			});
+		};
+		function logonbyphone() {
+			var parem = {
+				"phone": $("#id").val(),
+				"password": $("#password").val()
+			};
+			$.ajax({
+				url: "http://localhost:80/logon/phone",
+				type: "GET",
+				dataType: "json",
+				data: parem,
+				async: false,
+				headers: {
+					"token": localStorage.token
+				},
+				success:  function(result) {
+					if (result.code == 200) {
+						localStorage.token = result.data;
+						window.location.href = "shop_index.html";
+						window.event.returnValue = false;
+					}else if (result.code == 201) {
+						//存储token
+						localStorage.token = result.data;
+						//跳转到首页
+						location.href = "./admin_index.html";
+					}else if (result.code == 444) {
+						alert("用户名或密码输入错误");
+					}else if (result.code == 401) {
+						alert("已登录");
+						window.location.href = "shop_index.html";
+						window.event.returnValue = false;
+					}
+				},
+				error: function(xhr) {
+					alert("请求出错：" + xhr.status)
+				}
+			});
+		};
+	</script>
+</html>

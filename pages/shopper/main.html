@@ -1,0 +1,82 @@
+<div class="box">
+	<div class="box-header">
+		<div class="row">
+			<div class="col-md-4">
+				<h3 class="box-title">我的详细信息主页</h3>
+			</div>
+			<div class="col-md-8 text-right">
+				<a id="modify-my-information" class="btn btn-default">修改个人信息 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</div>
+
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body">
+		<table id="shopper-table" class="table table-bordered table-hover">
+			<tr>
+				<td style="width: 20%;">账号</td>
+				<td id="id"> </td>
+			</tr>
+			<tr>
+				<td>姓名</td>
+				<td id="name"> </td>
+			</tr>
+			<tr>
+				<td>性别</td>
+				<td id="gender"> </td>
+			</tr>
+			<tr>
+				<td>年龄</td>
+				<td id="age"> </td>
+			</tr>
+			<tr>
+				<td>昵称</td>
+				<td id="nickName"></td>
+			</tr>
+			<tr>
+				<td>邮箱</td>
+				<td id="email"></td>
+			</tr>
+			<tr>
+				<td>电话号码</td>
+				<td id="phone"></td>
+			</tr>
+			<tr>
+				<td>联系地址</td>
+				<td id="address"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script src="pages/shopper/main.js"></script>
+<script>
+	$.ajax({
+		url: "http://localhost:80/shopper/detail",
+		type: "GET",
+		dataType: "json",
+		data: {},
+		headers: {
+			"token": localStorage.token
+		},
+		success: function(resultDate) {
+			if (resultDate.code == 200) {
+				$("#id").text(resultDate.data.id);
+				$("#name").text(resultDate.data.name);
+				$("#gender").text(resultDate.data.gender);
+				$("#age").text(resultDate.data.age);
+				$("#nickName").text(resultDate.data.nickName);
+				$("#email").text(resultDate.data.email);
+				$("#phone").text(resultDate.data.phone);
+				$("#address").text(resultDate.data.address);
+			} else if (resultDate.code == 443) {
+				alert("未登录");
+				location.href = "login.html";
+			} else {
+				alert("错误代码：" + resultDate.code);
+			}
+		},
+		error: function(xhr) {
+			alert("请求出错：" + xhr.status);
+		}
+	});
+</script>

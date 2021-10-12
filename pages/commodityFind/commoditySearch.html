@@ -1,0 +1,68 @@
+<div class="box">
+	<div class="box-header">
+		<div class="row">
+			<div class="col-md-4">
+				<h3 class="box-title">闲置物品查找页面</h3>
+			</div>
+			<div class="col-md-8 text-right">
+				<a id="commodityViewLink" class="btn btn-default">查看物品详情 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</div>
+		<strong>查找条件：</strong>
+		<span id="labelList">
+			<label>关键字：</label>
+			<input type="text" id="searchInputkey" placeholder="请输入商品关键字" name="key" />
+			<label>最低价格：</label>
+			<input type="text" id="searchInputmin" placeholder="请输入商品最低价格" name="min" />
+			<label>最高价格：</label>
+			<input type="text" id="searchInputmax" placeholder="请输入商品最高价格" name="max" />
+			<button id="searchSaleInputSubmit">查找</button>
+		</span>
+	</div>
+	<!-- /.box-header -->
+	<div id="search-data-list"  style="display: none;">
+		<div class="box-body">
+			<table id="commodity-table" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>价格</th>
+						<th>求购要求</th>
+						<th>发布日期</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>名称</th>
+						<th>价格</th>
+						<th>求购要求</th>
+						<th>发布日期</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-md-6 text-left">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				个数：<span id="count"></span>
+				页数:<span id="page"></span>/<span id="pageCount"></span>
+			</div>
+
+			<div class="col-md-6 text-right">
+				<nav>
+					<ul class="pagination justify-content-end">
+						<li class="page-item"><a class="page-link" href="#">首页</a></li>
+						<li class="page-item"><a class="page-link" href="#">上页</a></li>
+						<li class="page-item"><a class="page-link" href="#">下页</a></li>
+						<li class="page-item"><a class="page-link" href="#">末页</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="commodity-search-dialog" style="background-color: #EEE"></div>
+<script src="pages/commodityFind/search.js"></script>

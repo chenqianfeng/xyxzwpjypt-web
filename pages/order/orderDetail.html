@@ -1,0 +1,67 @@
+<div class="box box-primary" id="commodity-Detail-Dialog">
+	<div class="box-header with-border">
+		<h3 class="box-title">查看订单详情</h3>
+	</div>
+	<div >
+		<div class="box-body" id="detail-div">
+			<div class="form-group">
+				<label >订单ID:</label>
+				<lable type="text" name="id" id="detail-order-id"/>
+			</div>
+			<div class="form-group">
+				<label >订单状态:</label>
+				<lable type="text" name="status" id="detail-order-id"/>
+			</div>
+			<div class="form-group">
+				<label >创建时间:</label>
+				<lable type="text" name="createTime"/>
+			</div>
+			<div class="form-group">
+				<label >商品价格:</label>
+				<lable type="text" name="payMoney"/>
+			</div>
+			<div class="form-group">
+				<label >卖家昵称:</label>
+				<lable type="text" name="shopperName"/>
+			</div>
+			<div class="form-group">
+				<label >卖家电话:</label>
+				<lable type="text" name="shopperPhone"/>
+			</div>
+			<div class="form-group">
+				<label >卖家email:</label>
+				<lable type="text" name="shopperEmail"/>
+			</div>
+			<div class="form-group">
+				<label >商品ID:</label>
+				<lable type="text" name="saleId"/>
+			</div>
+			<div class="form-group">
+				<label >商品名:</label>
+				<lable type="text" name="saleName"/>
+			</div>
+			<div class="form-group">
+				<label >商品新旧程度:</label>
+				<lable type="text" name="saleShabby"/>
+			</div>
+			<div class="form-group">
+				<label >商品简介:</label>
+				<lable type="text" name="saleIntroduce"/>
+			</div>
+			<div class="form-group">
+				<label >商品发布日期:</label>
+				<lable type="text" name="saleReleaseDate"/>
+			</div>
+		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+			<button id="cancle-button" type="button" class="btn btn-primary" style="float: left;width: 33%;">返回</button>
+			<button id="pay-button" type="button" class="btn btn-primary" style="float: right;width: 33%;">付款</button>
+		</div>
+	</div>
+</div>
+<script>
+	$("#cancle-button").on("click",function(){
+		$("div#commodity-Detail-Dialog").html("");
+	});
+</script>

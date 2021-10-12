@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>正在跳转</title>
+	</head>
+	<body>
+		<h1>付款成功,请稍后......</h1>
+	</body>
+	
+	<script src="../../assets/js/jquery-1.8.2.min.js"></script>
+	<script>
+		function getParem(name)
+		{
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+		
+		var id = getParem("out_trade_no");
+		$.ajax({
+			url: "http://localhost:80/order/pay/notify/"+id,
+			type: "GET",
+			dataType: "json",
+			data: {},
+			headers: {
+				"token": localStorage.token
+			},
+			success: function(resultDate) {
+				if(resultDate.code==200){
+					window.location.href = "../../shop_index.html";
+					window.event.returnValue = false;
+				}
+				else{
+					window.location.href = "../../shop_index.html";
+					window.event.returnValue = false;
+					alert("同步失败,请联系管理员！");
+				}
+			},
+			error: function(xhr) {
+				alert("请求出错：" + xhr.status)
+			}
+		});
+	</script>
+</html>

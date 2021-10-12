@@ -1,0 +1,32 @@
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">增加求购商品</h3>
+	</div>
+	<form id="commodityAddForm" role="form" method="post" enctype="multipart/form-data">
+		<div class="box-body">
+			<div class="form-group">
+				<label >商品名称</label>
+				<input type="text" id="exampleInputName-add" placeholder="请输入商品名称" name="name"/>
+			</div>
+			<div class="form-group">
+				<label >商品价格</label>
+				<input type="text" id="exampleInputPrice-add" placeholder="请输入商品价格" name="price"/>
+			</div>
+			<div class="form-group">
+				<label >商品要求</label>
+				<input type="text"  id="exampleInputRules-add" placeholder="请输入商品介绍" name="rules"/>
+			</div>
+			<div id="addMore" class="form-group">
+				<label>请选择商品标签</label>
+				<span id ="add-sale-label-span"></span>
+				<button id="add-nextPageLabel">更多标签</button>
+			</div>
+		</div>
+		<!-- /.box-body -->
+		<div class="box-footer">
+		  <button id = "add-submit" type="button" class="btn btn-primary" style="width: 33%;">确定</button>
+		  <button id="cancle-button" type="button" class="btn btn-primary" style="float: right;width: 33%;">取消</button>
+		</div>
+	</form>
+</div>
+<script src="pages/commodityFind/add.js"></script>
